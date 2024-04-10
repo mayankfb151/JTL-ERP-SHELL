@@ -43,7 +43,19 @@ module.exports = {
                 "./App": "./src/App",
             },
             shared: {
+                react: {
+                    singleton: true,
+                },
+                "react-dom": {
+                    singleton: true,
+                },
                 "@mui/material": {
+                    singleton: true,
+                },
+                "@emotion/styled": {
+                    singleton: true,
+                },
+                "@emotion/react": {
                     singleton: true,
                 },
             },
