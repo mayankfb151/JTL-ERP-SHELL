@@ -32,6 +32,7 @@ const theme = createTheme({
             styleOverrides: {
                 root: {
                     backgroundColor: "blue", // Change the background color of all buttons
+                    color: "white",
                 },
                 contained: {
                     backgroundColor: "red", // Change the background color of contained buttons
