@@ -21,23 +21,22 @@ const theme = createTheme({
     },
     palette: {
         secondary: {
-            main: "#E33E7F",
+            main: orange[500],
         },
         primary: {
-            main: "#E33E7F",
+            main: orange[500],
         },
     },
     components: {
         MuiButton: {
             styleOverrides: {
                 root: {
-                    backgroundColor: "blue", // Change the background color of all buttons
+                    backgroundColor: "blue",
                     color: "white",
                 },
                 contained: {
-                    backgroundColor: "red", // Change the background color of contained buttons
+                    backgroundColor: "red",
                 },
-                // You can add specific styles for other button variants like outlined, text, etc.
             },
         },
     },

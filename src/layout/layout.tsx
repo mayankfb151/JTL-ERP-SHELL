@@ -1,16 +1,16 @@
 import Grid from "@mui/material/Grid";
 
-import DividedOptions from "../src/components/Option";
-import DateRow from "../src/components/DateRow";
+import DividedOptions from "../components/Option";
+import DateRow from "../components/DateRow";
+import MainSection from "../components/MainSection";
 import { Container } from "@mui/system";
-import { Outlet } from "react-router";
 
 export default function BasicGrid() {
     return (
         <Container>
             <DividedOptions />
             <DateRow />
-            <Outlet />
+            <MainSection />
         </Container>
     );
 }
