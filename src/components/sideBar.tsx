@@ -89,7 +89,11 @@ export default function PersistentDrawerLeft() {
         <Grid container direction={"column"}>
             <Grid item>
                 <CssBaseline />
-                <AppBar position="fixed" open={open}>
+                <AppBar
+                    position="fixed"
+                    open={open}
+                    style={{ backgroundColor: "black" }}
+                >
                     <Toolbar>
                         <IconButton
                             color="inherit"
@@ -170,7 +174,7 @@ export default function PersistentDrawerLeft() {
                         </List>
                     </Drawer>
                 </Grid>
-                <Grid item width={"80%"} margin={"0 auto"}>
+                <Grid item width={"50rem"} margin={"0 auto"}>
                     <Main open={open}>
                         <DrawerHeader />
                         <Outlet />
