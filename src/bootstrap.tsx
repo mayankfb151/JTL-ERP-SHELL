@@ -1,16 +1,13 @@
 import App from "./App";
 import { createRoot } from "react-dom/client";
-import {
-    createBrowserRouter,
-    createMemoryRouter,
-    RouterProvider,
-} from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import OrderSection from "./components/MainSection";
 import ItemSection from "./components/ItemSection";
+import PersistentDrawerLeft from "./components/sideBar";
 const router = createBrowserRouter([
     {
         path: "/",
-        element: <App />,
+        element: <PersistentDrawerLeft />,
         errorElement: <h1>404 not found</h1>,
         children: [
             {

@@ -1,17 +1,21 @@
-import Grid from "@mui/material/Grid";
-
+import { Grid } from "@mui/material";
 import DividedOptions from "../src/components/Option";
-import DateRow from "../src/components/DateRow";
 import { Container } from "@mui/system";
 import { Outlet } from "react-router";
-import axios from "axios";
+import PersistentDrawerLeft from "./components/sideBar";
 
 export default function BasicGrid() {
     return (
         <Container>
-            <DividedOptions />
-            <DateRow />
-            <Outlet />
+            <Grid container rowGap={6}>
+                <Grid>
+                    <DividedOptions />
+                </Grid>
+                <Grid direction={"row"}>
+                    <PersistentDrawerLeft />
+                    <Outlet />
+                </Grid>
+            </Grid>
         </Container>
     );
 }
