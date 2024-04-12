@@ -1,26 +1,53 @@
-import * as React from "react";
-import { styled, useTheme } from "@mui/material/styles";
-import Box from "@mui/material/Box";
-import Drawer from "@mui/material/Drawer";
-import CssBaseline from "@mui/material/CssBaseline";
-import MuiAppBar, { AppBarProps as MuiAppBarProps } from "@mui/material/AppBar";
-import Toolbar from "@mui/material/Toolbar";
-import List from "@mui/material/List";
-import Typography from "@mui/material/Typography";
-import Divider from "@mui/material/Divider";
-import IconButton from "@mui/material/IconButton";
-import MenuIcon from "@mui/icons-material/Menu";
+import {
+    AllOutOutlined,
+    AttachMoney,
+    Book,
+    ChangeCircleRounded,
+    Check,
+    Expand,
+    ExpandRounded,
+    HourglassBottomRounded,
+    House,
+    HouseRounded,
+    LocalShipping,
+    MoneyOffCsred,
+    PlusOne,
+    Shield,
+    StarTwoTone,
+} from "@mui/icons-material";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
+import DraftsIcon from "@mui/icons-material/Drafts";
+import ExpandLess from "@mui/icons-material/ExpandLess";
+import ExpandMore from "@mui/icons-material/ExpandMore";
+import MailIcon from "@mui/icons-material/Mail";
+import MenuIcon from "@mui/icons-material/Menu";
+import InboxIcon from "@mui/icons-material/MoveToInbox";
+import SendIcon from "@mui/icons-material/Send";
+import StarBorder from "@mui/icons-material/StarBorder";
+import { Button, Grid } from "@mui/material";
+import MuiAppBar, { AppBarProps as MuiAppBarProps } from "@mui/material/AppBar";
+import Box from "@mui/material/Box";
+import Collapse from "@mui/material/Collapse";
+import CssBaseline from "@mui/material/CssBaseline";
+import Divider from "@mui/material/Divider";
+import Drawer from "@mui/material/Drawer";
+import IconButton from "@mui/material/IconButton";
+import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import InboxIcon from "@mui/icons-material/MoveToInbox";
-import MailIcon from "@mui/icons-material/Mail";
-import { Outlet } from "react-router";
-import { Grid } from "@mui/material";
+import ListSubheader from "@mui/material/ListSubheader";
+import { styled, useTheme } from "@mui/material/styles";
+import Toolbar from "@mui/material/Toolbar";
+import Typography from "@mui/material/Typography";
 import { Container } from "@mui/system";
+import * as React from "react";
+import { Outlet } from "react-router";
+
+import CustomListItem from "./sideBarListItem";
+import SideBarOption from "./SideBarOption";
 
 const drawerWidth = 240;
 
@@ -76,6 +103,11 @@ const DrawerHeader = styled("div")(({ theme }) => ({
 export default function PersistentDrawerLeft() {
     const theme = useTheme();
     const [open, setOpen] = React.useState(false);
+    const [openSubmenu, setOpenSubMenu] = React.useState(true);
+
+    const handleClick = () => {
+        setOpenSubMenu(!openSubmenu);
+    };
 
     const handleDrawerOpen = () => {
         setOpen(true);
@@ -87,31 +119,20 @@ export default function PersistentDrawerLeft() {
 
     return (
         <Grid container direction={"column"}>
-            <Grid item>
-                <CssBaseline />
-                <AppBar
-                    position="fixed"
-                    open={open}
-                    style={{ backgroundColor: "black" }}
-                >
-                    <Toolbar>
-                        <IconButton
-                            color="inherit"
-                            aria-label="open drawer"
-                            onClick={handleDrawerOpen}
-                            edge="start"
-                            sx={{ mr: 2, ...(open && { display: "none" }) }}
-                        >
-                            <MenuIcon />
-                        </IconButton>
-                        <Typography variant="h6" noWrap component="div">
-                            JTL - ERP
-                        </Typography>
-                    </Toolbar>
-                </AppBar>
-            </Grid>
             <Grid container direction={"row"}>
-                <Grid item width={"20%"}>
+                <Grid
+                    item
+                    sx={{
+                        flexGrow: 0,
+                        display: "flex",
+                    }}
+                >
+                    <AllOutOutlined
+                        onClick={() => {
+                            setOpen(true);
+                        }}
+                    />
+
                     <Drawer
                         sx={{
                             width: drawerWidth,
@@ -126,58 +147,165 @@ export default function PersistentDrawerLeft() {
                         open={open}
                     >
                         <DrawerHeader>
-                            <IconButton onClick={handleDrawerClose}>
-                                {theme.direction === "ltr" ? (
-                                    <ChevronLeftIcon />
-                                ) : (
-                                    <ChevronRightIcon />
-                                )}
-                            </IconButton>
+                            <Grid
+                                container
+                                direction={"row"}
+                                justifyContent={"space-between"}
+                                alignItems={"center"}
+                            >
+                                <Grid item>
+                                    <Grid
+                                        container
+                                        direction={"row"}
+                                        alignItems={"center"}
+                                        columnGap={1}
+                                    >
+                                        <img
+                                            src="./logo.svg"
+                                            width={"40rem"}
+                                            height={"`20rem"}
+                                        />
+                                        <Typography fontSize={"1rem"}>
+                                            Cloud ERP
+                                        </Typography>
+                                    </Grid>
+                                </Grid>
+
+                                <Grid item>
+                                    <IconButton onClick={handleDrawerClose}>
+                                        {theme.direction === "ltr" ? (
+                                            <ChevronLeftIcon />
+                                        ) : (
+                                            <ChevronRightIcon />
+                                        )}
+                                    </IconButton>
+                                </Grid>
+                            </Grid>
                         </DrawerHeader>
-                        <Divider />
-                        <List>
-                            {["Inbox", "Starred", "Send email", "Drafts"].map(
-                                (text, index) => (
-                                    <ListItem key={text} disablePadding>
-                                        <ListItemButton>
-                                            <ListItemIcon>
-                                                {index % 2 === 0 ? (
-                                                    <InboxIcon />
-                                                ) : (
-                                                    <MailIcon />
-                                                )}
-                                            </ListItemIcon>
-                                            <ListItemText primary={text} />
-                                        </ListItemButton>
-                                    </ListItem>
-                                )
-                            )}
-                        </List>
-                        <Divider />
-                        <List>
-                            {["All mail", "Trash", "Spam"].map(
-                                (text, index) => (
-                                    <ListItem key={text} disablePadding>
-                                        <ListItemButton>
-                                            <ListItemIcon>
-                                                {index % 2 === 0 ? (
-                                                    <InboxIcon />
-                                                ) : (
-                                                    <MailIcon />
-                                                )}
-                                            </ListItemIcon>
-                                            <ListItemText primary={text} />
-                                        </ListItemButton>
-                                    </ListItem>
-                                )
-                            )}
+
+                        <List
+                            sx={{
+                                width: "100%",
+                                maxWidth: 360,
+                                bgcolor: "background.paper",
+                            }}
+                            component="nav"
+                            aria-labelledby="nested-list-subheader"
+                        >
+                            <SideBarOption
+                                icon={<Book />}
+                                label={"Items"}
+                                listItemButtons={[
+                                    { label: "Offers" },
+                                    { label: "Orders" },
+                                    { label: "Invoices" },
+                                    { label: "Invoices corrections" },
+                                ]}
+                            />
+                            <SideBarOption
+                                icon={<AttachMoney />}
+                                label={"Sales"}
+                                listItemButtons={[
+                                    { label: "Offers" },
+                                    { label: "Orders" },
+                                    { label: "Invoices" },
+                                    { label: "Invoices corrections" },
+                                ]}
+                            />
+                            <SideBarOption
+                                icon={<Check />}
+                                label={"Purchase"}
+                                listItemButtons={[
+                                    { label: "Offers" },
+                                    { label: "Orders" },
+                                    { label: "Invoices" },
+                                    { label: "Invoices corrections" },
+                                ]}
+                            />
+                            <SideBarOption
+                                icon={<Shield />}
+                                label={"Shipping"}
+                                listItemButtons={[
+                                    { label: "Offers" },
+                                    { label: "Orders" },
+                                    { label: "Invoices" },
+                                    { label: "Invoices corrections" },
+                                ]}
+                            />
+                            <SideBarOption
+                                icon={<PlusOne />}
+                                label={"Returns"}
+                                listItemButtons={[
+                                    { label: "Offers" },
+                                    { label: "Orders" },
+                                    { label: "Invoices" },
+                                    { label: "Invoices corrections" },
+                                ]}
+                            />
+                            <SideBarOption
+                                icon={<MoneyOffCsred />}
+                                label={"Payments"}
+                                listItemButtons={[
+                                    { label: "Offers" },
+                                    { label: "Orders" },
+                                    { label: "Invoices" },
+                                    { label: "Invoices corrections" },
+                                ]}
+                            />
+                            <SideBarOption
+                                icon={<House />}
+                                label={"Warehouse"}
+                                listItemButtons={[
+                                    { label: "Offers" },
+                                    { label: "Orders" },
+                                    { label: "Invoices" },
+                                    { label: "Invoices corrections" },
+                                ]}
+                            />
+                            <SideBarOption
+                                icon={<ChangeCircleRounded />}
+                                label={"Sales Channel"}
+                                listItemButtons={[
+                                    { label: "Offers" },
+                                    { label: "Orders" },
+                                    { label: "Invoices" },
+                                    { label: "Invoices corrections" },
+                                ]}
+                            />
+                            <SideBarOption
+                                icon={<StarTwoTone />}
+                                label={"Static"}
+                                listItemButtons={[
+                                    { label: "Offers" },
+                                    { label: "Orders" },
+                                    { label: "Invoices" },
+                                    { label: "Invoices corrections" },
+                                ]}
+                            />
+
+                            <SideBarOption
+                                icon={<HouseRounded />}
+                                label={"Store"}
+                                listItemButtons={[
+                                    { label: "Offers" },
+                                    { label: "Orders" },
+                                    { label: "Invoices" },
+                                    { label: "Invoices corrections" },
+                                ]}
+                            />
                         </List>
                     </Drawer>
-                </Grid>
-                <Grid item width={"50rem"} margin={"0 auto"}>
                     <Main open={open}>
-                        <DrawerHeader />
-                        <Outlet />
+                        <Grid
+                            item
+                            sx={{
+                                flexGrow: 1,
+                                display: "flex",
+                                height: "100px",
+                            }}
+                        >
+                            <Outlet />
+                        </Grid>
                     </Main>
                 </Grid>
             </Grid>

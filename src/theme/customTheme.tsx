@@ -21,10 +21,10 @@ const theme = createTheme({
     },
     palette: {
         secondary: {
-            main: orange[500],
+            main: "#1160b7",
         },
         primary: {
-            main: orange[500],
+            main: "#b1d6f0",
         },
     },
     components: {
