@@ -1,6 +1,6 @@
 import { Navigate } from "react-router-dom";
 import OrdersApp from "../apps/Order";
-import SideBar from "../components/sidebar/sideBar";
+import SideBar from "../components/sidebar/sideBar2";
 import ErrorPage from "../components/errorPage";
 
 const routes = [

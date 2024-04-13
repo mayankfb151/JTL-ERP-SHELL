@@ -1,4 +1,16 @@
-import { AllOutOutlined, AttachMoney, Book, ChangeCircleRounded, Check, House, HouseRounded, MoneyOffCsred, PlusOne, Shield, StarTwoTone } from "@mui/icons-material";
+import {
+    AllOutOutlined,
+    AttachMoney,
+    Book,
+    ChangeCircleRounded,
+    Check,
+    House,
+    HouseRounded,
+    MoneyOffCsred,
+    PlusOne,
+    Shield,
+    StarTwoTone,
+} from "@mui/icons-material";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import { Grid } from "@mui/material";
@@ -75,6 +87,7 @@ export default function SideBar() {
                     }}
                 >
                     <AllOutOutlined
+                        sx={{ cursor: "pointer" }}
                         onClick={() => {
                             setOpen(true);
                         }}
