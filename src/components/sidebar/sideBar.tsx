@@ -153,6 +153,7 @@ export default function SideBar() {
                             aria-labelledby="nested-list-subheader"
                         >
                             <SideBarOption
+                                open={open}
                                 icon={<Book />}
                                 label={"Items"}
                                 listItemButtons={[
@@ -163,6 +164,7 @@ export default function SideBar() {
                                 ]}
                             />
                             <SideBarOption
+                                open={open}
                                 icon={<AttachMoney />}
                                 label={"Sales"}
                                 listItemButtons={[

@@ -15,12 +15,15 @@ export default function SideBarOption(props: any) {
             <ListItemButton
                 onClick={handleClick}
                 sx={{
-                    maxHeight: "2rem",
-                    margin: 0,
+                    minHeight: 48,
+                    px: 2.5,
                 }}
             >
                 <ListItemIcon>{props.icon}</ListItemIcon>
-                <SideBarListItem label={props.label} />
+                <SideBarListItem
+                    label={props.label}
+                    sx={{ opacity: props.open ? 1 : 0 }}
+                />
                 {openSubmenu ? <ExpandLess /> : <ExpandMore />}
             </ListItemButton>
             <Collapse in={openSubmenu} timeout="auto" unmountOnExit>

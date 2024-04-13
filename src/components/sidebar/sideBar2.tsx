@@ -20,6 +20,8 @@ import InboxIcon from "@mui/icons-material/MoveToInbox";
 import MailIcon from "@mui/icons-material/Mail";
 import { Grid } from "@mui/material";
 import { Outlet } from "react-router-dom";
+import SideBarOption from "./SideBarOption";
+import { AddBox, Book, PostAdd, Settings } from "@mui/icons-material";
 
 const drawerWidth = 240;
 
@@ -114,13 +116,17 @@ const Drawer = styled(MuiDrawer, {
 export default function MiniDrawer() {
     const theme = useTheme();
     const [open, setOpen] = React.useState(false);
-
+    const [show, setShow] = React.useState(false);
     const handleDrawerOpen = () => {
-        setOpen(true);
-    };
-
-    const handleDrawerClose = () => {
-        setOpen(false);
+        setOpen(!open);
+        if (open == false) {
+            setShow(false);
+            setTimeout(() => {
+                setShow(true);
+            }, 300);
+        } else {
+            setShow(false);
+        }
     };
 
     return (
@@ -128,12 +134,41 @@ export default function MiniDrawer() {
             <CssBaseline />
             <Drawer variant="permanent" open={open}>
                 <DrawerHeader>
+                    {open && show && (
+                        <Grid item container>
+                            <Grid
+                                container
+                                direction={"row"}
+                                justifyContent={"space-between"}
+                                columnGap={1}
+                            >
+                                <Grid
+                                    container
+                                    alignItems={"center"}
+                                    gap={2}
+                                    item
+                                    direction={"row"}
+                                >
+                                    <img
+                                        src="./logo.svg"
+                                        width={"40rem"}
+                                        height={"`20rem"}
+                                    />
+
+                                    <Typography fontSize={"1rem"}>
+                                        Cloud ERP
+                                    </Typography>
+                                </Grid>
+                                <Grid item></Grid>
+                            </Grid>
+                        </Grid>
+                    )}
                     <IconButton
                         onClick={() => {
-                            setOpen(!open);
+                            handleDrawerOpen();
                         }}
                     >
-                        {theme.direction === "rtl" ? (
+                        {open === false ? (
                             <ChevronRightIcon />
                         ) : (
                             <ChevronLeftIcon />
@@ -142,80 +177,28 @@ export default function MiniDrawer() {
                 </DrawerHeader>
                 <Divider />
                 <List>
-                    {["Inbox", "Starred", "Send email", "Drafts"].map(
-                        (text, index) => (
-                            <ListItem
-                                key={text}
-                                disablePadding
-                                sx={{ display: "block" }}
-                            >
-                                <ListItemButton
-                                    sx={{
-                                        minHeight: 48,
-                                        justifyContent: open
-                                            ? "initial"
-                                            : "center",
-                                        px: 2.5,
-                                    }}
-                                >
-                                    <ListItemIcon
-                                        sx={{
-                                            minWidth: 0,
-                                            mr: open ? 3 : "auto",
-                                            justifyContent: "center",
-                                        }}
-                                    >
-                                        {index % 2 === 0 ? (
-                                            <InboxIcon />
-                                        ) : (
-                                            <MailIcon />
-                                        )}
-                                    </ListItemIcon>
-                                    <ListItemText
-                                        primary={text}
-                                        sx={{ opacity: open ? 1 : 0 }}
-                                    />
-                                </ListItemButton>
-                            </ListItem>
-                        )
-                    )}
+                    <SideBarOption
+                        icon={<PostAdd />}
+                        label={"Items"}
+                        listItemButtons={[
+                            { label: "Offers" },
+                            { label: "Orders" },
+                            { label: "Invoices" },
+                            { label: "Invoices corrections" },
+                        ]}
+                    />
+                    <SideBarOption
+                        icon={<Settings />}
+                        label={"Orders"}
+                        listItemButtons={[
+                            { label: "Offers" },
+                            { label: "Orders" },
+                            { label: "Invoices" },
+                            { label: "Invoices corrections" },
+                        ]}
+                    />
                 </List>
                 <Divider />
-                <List>
-                    {["All mail", "Trash", "Spam"].map((text, index) => (
-                        <ListItem
-                            key={text}
-                            disablePadding
-                            sx={{ display: "block" }}
-                        >
-                            <ListItemButton
-                                sx={{
-                                    minHeight: 48,
-                                    justifyContent: open ? "initial" : "center",
-                                    px: 2.5,
-                                }}
-                            >
-                                <ListItemIcon
-                                    sx={{
-                                        minWidth: 0,
-                                        mr: open ? 3 : "auto",
-                                        justifyContent: "center",
-                                    }}
-                                >
-                                    {index % 2 === 0 ? (
-                                        <InboxIcon />
-                                    ) : (
-                                        <MailIcon />
-                                    )}
-                                </ListItemIcon>
-                                <ListItemText
-                                    primary={text}
-                                    sx={{ opacity: open ? 1 : 0 }}
-                                />
-                            </ListItemButton>
-                        </ListItem>
-                    ))}
-                </List>
             </Drawer>
             <Grid item xs overflow={"auto"}>
                 <Outlet />
