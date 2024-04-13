@@ -1,0 +1,1 @@
+declare module 'OrdersMicroApp/App1Index'

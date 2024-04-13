@@ -8,9 +8,13 @@ module.exports = {
     },
     entry: "./src/index.tsx",
     output: {
-        path: path.resolve(__dirname, "dist"),
         filename: "bundle.js",
+        // Specify the public path where the bundle.js file should be served from
+        publicPath: "/",
+        // Specify the output directory
+        path: path.resolve(__dirname, "dist"),
     },
+
     resolve: {
         extensions: [".js", ".jsx", ".json", ".ts", ".tsx"],
     },
@@ -45,9 +49,7 @@ module.exports = {
                 OrdersMicroApp:
                     "OrdersMicroApp@http://localhost:3001/dist/remoteEntry.js",
             },
-            exposes: {
-                "./App": "./src/App",
-            },
+            exposes: {},
             shared: {
                 react: {
                     singleton: true,

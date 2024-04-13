@@ -1,4 +1,9 @@
-import { Grid } from "@mui/material";
+import React from "react";
+import { Router } from "./routing/Router";
+
+export const App = () => <Router />;
+
+/*import { Grid } from "@mui/material";
 import DividedOptions from "../src/components/Option";
 import { Container } from "@mui/system";
 import { Outlet } from "react-router";
@@ -19,3 +24,4 @@ export default function BasicGrid() {
         </Container>
     );
 }
+*/

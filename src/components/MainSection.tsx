@@ -12,11 +12,9 @@ const OrderSection = () => {
     });
     return (
         <>
-            <ThemeProvider theme={theme}>
-                <Suspense fallback={<h1>Loading...</h1>}>
-                    <FancyButtonCopy />
-                </Suspense>
-            </ThemeProvider>
+            <Suspense fallback={<h1>Loading...</h1>}>
+                <FancyButtonCopy />
+            </Suspense>
         </>
     );
 };
