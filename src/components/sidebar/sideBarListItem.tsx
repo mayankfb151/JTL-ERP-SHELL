@@ -1,7 +1,7 @@
 import { Typography } from "@mui/material";
 import ListItemText from "@mui/material/ListItemText";
 
-export default function CustomListItem(props: any) {
+export default function SideBarListItem(props: any) {
     return (
         <ListItemText
             primary={

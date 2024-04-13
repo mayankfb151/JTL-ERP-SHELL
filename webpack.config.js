@@ -39,15 +39,12 @@ module.exports = {
             template: path.resolve(__dirname, "src", "index.html"),
         }),
         new ModuleFederationPlugin({
-            name: "ShellApp",
-            filename: "dist/remoteEntry.js",
+            name: "Shell",
+            filename: "remoteEntry.js",
             remotes: {
-                OrdersMicroApp:
-                    "OrdersMicroApp@http://localhost:3001/dist/remoteEntry.js",
+                Orders: "Orders@http://localhost:3001/remoteEntry.js",
             },
-            exposes: {
-                "./App": "./src/App",
-            },
+            exposes: {},
             shared: {
                 react: {
                     singleton: true,

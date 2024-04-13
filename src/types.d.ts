@@ -1,2 +1,1 @@
-declare module 'OrdersMicroApp/FancyButton'
-declare module 'OrdersMicroApp/ItemTable'
+declare module 'Orders/FancyButton'

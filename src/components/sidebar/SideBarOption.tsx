@@ -1,8 +1,8 @@
-import { AttachMoney, ExpandLess, ExpandMore } from "@mui/icons-material";
+import { ExpandLess, ExpandMore } from "@mui/icons-material";
 import { Collapse, List, ListItemButton, ListItemIcon } from "@mui/material";
 import { useState } from "react";
 
-import CustomListItem from "./sideBarListItem";
+import SideBarListItem from "./sideBarListItem";
 
 export default function SideBarOption(props: any) {
     const [openSubmenu, setOpenSubMenu] = useState(false);
@@ -20,7 +20,7 @@ export default function SideBarOption(props: any) {
                 }}
             >
                 <ListItemIcon>{props.icon}</ListItemIcon>
-                <CustomListItem label={props.label} />
+                <SideBarListItem label={props.label} />
                 {openSubmenu ? <ExpandLess /> : <ExpandMore />}
             </ListItemButton>
             <Collapse in={openSubmenu} timeout="auto" unmountOnExit>
@@ -35,7 +35,7 @@ export default function SideBarOption(props: any) {
                                 }}
                             >
                                 <ListItemIcon></ListItemIcon>
-                                <CustomListItem label={listItemButton.label} />
+                                <SideBarListItem label={listItemButton.label} />
                             </ListItemButton>
                         );
                     })}

@@ -1,52 +1,16 @@
-import {
-    AllOutOutlined,
-    AttachMoney,
-    Book,
-    ChangeCircleRounded,
-    Check,
-    Expand,
-    ExpandRounded,
-    HourglassBottomRounded,
-    House,
-    HouseRounded,
-    LocalShipping,
-    MoneyOffCsred,
-    PlusOne,
-    Shield,
-    StarTwoTone,
-} from "@mui/icons-material";
+import { AllOutOutlined, AttachMoney, Book, ChangeCircleRounded, Check, House, HouseRounded, MoneyOffCsred, PlusOne, Shield, StarTwoTone } from "@mui/icons-material";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
-import DraftsIcon from "@mui/icons-material/Drafts";
-import ExpandLess from "@mui/icons-material/ExpandLess";
-import ExpandMore from "@mui/icons-material/ExpandMore";
-import MailIcon from "@mui/icons-material/Mail";
-import MenuIcon from "@mui/icons-material/Menu";
-import InboxIcon from "@mui/icons-material/MoveToInbox";
-import SendIcon from "@mui/icons-material/Send";
-import StarBorder from "@mui/icons-material/StarBorder";
-import { Button, Grid } from "@mui/material";
-import MuiAppBar, { AppBarProps as MuiAppBarProps } from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
-import Collapse from "@mui/material/Collapse";
-import CssBaseline from "@mui/material/CssBaseline";
-import Divider from "@mui/material/Divider";
+import { Grid } from "@mui/material";
+import { AppBarProps as MuiAppBarProps } from "@mui/material/AppBar";
 import Drawer from "@mui/material/Drawer";
 import IconButton from "@mui/material/IconButton";
 import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import ListItemButton from "@mui/material/ListItemButton";
-import ListItemIcon from "@mui/material/ListItemIcon";
-import ListItemText from "@mui/material/ListItemText";
-import ListSubheader from "@mui/material/ListSubheader";
 import { styled, useTheme } from "@mui/material/styles";
-import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
-import { Container } from "@mui/system";
 import * as React from "react";
 import { Outlet } from "react-router";
 
-import CustomListItem from "./sideBarListItem";
 import SideBarOption from "./SideBarOption";
 
 const drawerWidth = 240;
@@ -74,23 +38,6 @@ interface AppBarProps extends MuiAppBarProps {
     open?: boolean;
 }
 
-const AppBar = styled(MuiAppBar, {
-    shouldForwardProp: (prop) => prop !== "open",
-})<AppBarProps>(({ theme, open }) => ({
-    transition: theme.transitions.create(["margin", "width"], {
-        easing: theme.transitions.easing.sharp,
-        duration: theme.transitions.duration.leavingScreen,
-    }),
-    ...(open && {
-        width: `calc(100% - ${drawerWidth}px)`,
-        marginLeft: `${drawerWidth}px`,
-        transition: theme.transitions.create(["margin", "width"], {
-            easing: theme.transitions.easing.easeOut,
-            duration: theme.transitions.duration.enteringScreen,
-        }),
-    }),
-}));
-
 const DrawerHeader = styled("div")(({ theme }) => ({
     display: "flex",
     alignItems: "center",
@@ -100,7 +47,7 @@ const DrawerHeader = styled("div")(({ theme }) => ({
     justifyContent: "flex-end",
 }));
 
-export default function PersistentDrawerLeft() {
+export default function SideBar() {
     const theme = useTheme();
     const [open, setOpen] = React.useState(false);
     const [openSubmenu, setOpenSubMenu] = React.useState(true);
@@ -296,14 +243,7 @@ export default function PersistentDrawerLeft() {
                         </List>
                     </Drawer>
                     <Main open={open}>
-                        <Grid
-                            item
-                            sx={{
-                                flexGrow: 1,
-                                display: "flex",
-                                height: "100px",
-                            }}
-                        >
+                        <Grid item>
                             <Outlet />
                         </Grid>
                     </Main>

@@ -1,14 +1,12 @@
 import { ThemeProvider } from "@mui/material";
 import { lazy } from "react";
-import theme from "../theme/customTheme";
 import { Suspense } from "react";
-import Container from "@mui/material/Container";
 
-const ItemSection = import("OrdersMicroApp/ItemTable");
+import theme from "../theme/customTheme";
 
-const ItemSectionComp = () => {
+const OrdersApp = () => {
     const FancyButtonCopy = lazy(() => {
-        return ItemSection;
+        return import("Orders/FancyButton");
     });
     return (
         <>
@@ -20,4 +18,4 @@ const ItemSectionComp = () => {
         </>
     );
 };
-export default ItemSectionComp;
+export default OrdersApp;
